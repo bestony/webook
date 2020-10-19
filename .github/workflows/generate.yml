@@ -16,10 +16,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install 
-      run: cargo install mdbook
-    - name: Generate
-      run: mdbook build
+    - name: Setup mdBook
+      uses: peaceiris/actions-mdbook@v1
+      with:
+        mdbook-version: 'latest'
+    - run: mdbook build
     - uses: amondnet/vercel-action@v19
       with:
         vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
